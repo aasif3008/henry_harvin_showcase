@@ -35,11 +35,18 @@ class _HomeState extends State<Home> {
             height: double.maxFinite,
             width: double.maxFinite,
           ),
-          IconButton(
-            onPressed: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Activities())),
-            icon: const Icon(Icons.play_arrow_rounded, size: 200, color: Colors.white),
-            style: IconButton.styleFrom(backgroundColor: Colors.black38),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () =>
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Activities())),
+                icon: const Icon(Icons.play_arrow_rounded, size: 200, color: Colors.white),
+                style: IconButton.styleFrom(backgroundColor: Colors.black38),
+              ),
+              const SizedBox(height: 20),
+              const Text('Click on the icon above...', style: TextStyle(fontSize: 30, color: Colors.white))
+            ],
           ),
         ],
       ),

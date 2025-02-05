@@ -100,7 +100,7 @@ class _QuizState extends State<Quiz> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    list.length == index ? "Thank You!" : list[index][0],
+                    list.length == index ? "Boom! Your Results Just Landed!!" : list[index][0],
                     maxLines: 2,
                     style:
                         const TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold),

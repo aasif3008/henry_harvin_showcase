@@ -1,9 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-
-import '../video_player.dart';
 import 'quiz.dart';
 
 class VideoQuiz extends StatefulWidget {
@@ -86,7 +83,7 @@ class _VideoQuizState extends State<VideoQuiz> {
       ),
       //////
       floatingActionButton: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(width: 36),
           TextButton(
@@ -109,14 +106,25 @@ class _VideoQuizState extends State<VideoQuiz> {
               ],
             ),
           ),
-          const Expanded(child: SizedBox()),
+          const SizedBox(width: 20),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(color: Colors.black26, borderRadius: BorderRadius.circular(50)),
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                textAlign: TextAlign.center,
+                'Note: Watch this short video (${_controller.value.duration.inSeconds} sec) and wait for the START QUIZ button to blink!',
+                style: const TextStyle(color: Colors.white, fontSize: 12),
+              ),
+            ),
+          ),
+
+          const SizedBox(width: 20),
           TextButton(
-            onPressed: () {
-              setState(() {
-                _controller.seekTo(Duration.zero);
-                _controller.play();
-              });
-            },
+            onPressed: () => setState(() {
+              _controller.seekTo(Duration.zero);
+              _controller.play();
+            }),
             style: IconButton.styleFrom(
               backgroundColor: Colors.black26,
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),

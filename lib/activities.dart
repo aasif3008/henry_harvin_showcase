@@ -32,7 +32,7 @@ class _ActivitiesState extends State<Activities> {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => const Language(activity: "B")));
               }),
-              button(Icons.quiz_outlined, "Quiz", () {
+              button(Icons.quiz_outlined, "MCQ Quiz", () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => const Language(activity: "C")));
               }),
