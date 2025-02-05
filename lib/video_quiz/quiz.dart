@@ -107,8 +107,7 @@ class _QuizState extends State<Quiz> {
                   ),
 
                   if (list.length == index)
-                    SizedBox(
-                        height: 350,
+                    Expanded(
                         child: ListView(
                           children: [
                             for (var da in list)
