@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:henry_harvin_showcase/flipping/cards_slider.dart';
+import 'package:henry_harvin_showcase/quiz/quiz_modules.dart';
 import 'package:henry_harvin_showcase/video_player.dart';
 
 import 'flipping_cards.dart';
+import 'video_quiz/modules.dart';
 
 class Language extends StatefulWidget {
-  const Language({super.key});
+  final String activity;
+
+  const Language({super.key, required this.activity});
 
   @override
   State<Language> createState() => _LanguageState();
@@ -16,12 +21,18 @@ class _LanguageState extends State<Language> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(children: [
-        const VideoApp(source: 'assets/big_buck_bunny.mp4'),
+        // const VideoApp(source: 'assets/big_buck_bunny.mp4'),
+        Image.asset(
+          "assets/hhBackground.png",
+          fit: BoxFit.cover,
+          height: double.maxFinite,
+          width: double.maxFinite,
+        ),
         Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              button("flag_japanese.jpg", "Japanese"),
+              if (widget.activity != "B") button("flag_japanese.jpg", "Japanese"),
               button("flag_germany.png", "German"),
               button("flag_english.jpg", "English"),
             ],
@@ -36,7 +47,15 @@ class _LanguageState extends State<Language> {
     return InkWell(
       borderRadius: BorderRadius.circular(30),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => FlippingCards(language: text)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => widget.activity == "A"
+                  ? CardsSlider(language: text)
+                  : widget.activity == "B"
+                      ? ChooseModules(language: text)
+                      : QuizModules(language: text),
+            ));
       },
       child: Container(
         width: 260,

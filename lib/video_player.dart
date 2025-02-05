@@ -3,8 +3,9 @@ import 'package:video_player/video_player.dart';
 
 class VideoApp extends StatefulWidget {
   final String source;
+  final bool play;
 
-  const VideoApp({super.key, required this.source});
+  const VideoApp({super.key, required this.source, this.play = true});
 
   @override
   _VideoAppState createState() => _VideoAppState();
@@ -20,8 +21,10 @@ class _VideoAppState extends State<VideoApp> {
     _controller = VideoPlayerController.asset(widget.source)
       ..initialize().then((_) {
         setState(() {
-          _controller.play();
-          _controller.setLooping(true);
+          // if (widget.play) {
+          //   _controller.play();
+          //   _controller.setLooping(true);
+          // }
         });
       });
 
@@ -50,7 +53,7 @@ class _VideoAppState extends State<VideoApp> {
                 ),
               ),
             )
-          : const Center(child: CircularProgressIndicator()),
+          : const SizedBox(),
     );
 
     return Scaffold(

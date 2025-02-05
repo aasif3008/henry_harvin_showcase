@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:henry_harvin_showcase/video_player.dart';
 
-import 'flipping_card_data.dart';
+import 'quiz_data.dart';
 import 'flipping_widget.dart';
 
 class FlippingCards extends StatefulWidget {
@@ -24,7 +24,7 @@ class _FlippingCardsState extends State<FlippingCards> {
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          const VideoApp(source: 'assets/big_buck_bunny.mp4'),
+          // const VideoApp(source: 'assets/big_buck_bunny.mp4', play:false),
           Align(
             alignment: Alignment.topCenter,
             child: Text("\n${widget.language} Learning",
@@ -33,19 +33,26 @@ class _FlippingCardsState extends State<FlippingCards> {
                     color: Colors.white,
                     fontSize: 46,
                     fontWeight: FontWeight.bold,
-                    shadows: [Shadow(color: Colors.black, offset: Offset(2, 2))])),
+                    shadows: [
+                      Shadow(color: Colors.black, offset: Offset(2, 2))
+                    ])),
           ),
           Container(
             width: 650,
-            decoration: BoxDecoration(color: Colors.black38, borderRadius: BorderRadius.circular(30)),
+            height: 400,
+            decoration: BoxDecoration(
+                color: Colors.black26, borderRadius: BorderRadius.circular(30)),
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                FlipWidget(
-                    playing: japaneseWords.length != index,
-                    row: japaneseWords[index],
-                    language: widget.language),
+                Expanded(
+                  child: FlipWidget(
+                      row: japaneseWords,
+                      index: index,
+                      language: widget.language),
+                ),
+                const SizedBox(height: 18),
                 if (japaneseWords.length == index)
                   OutlinedButton(
                       onPressed: () => Navigator.pop(context),
@@ -53,7 +60,8 @@ class _FlippingCardsState extends State<FlippingCards> {
                         side: const BorderSide(color: Colors.white),
                         padding: const EdgeInsets.only(left: 40, right: 40),
                       ),
-                      child: const Text('Close', style: TextStyle(color: Colors.white, fontSize: 30))),
+                      child: const Text('Close',
+                          style: TextStyle(color: Colors.white, fontSize: 30))),
                 if (japaneseWords.length != index)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,25 +71,32 @@ class _FlippingCardsState extends State<FlippingCards> {
                             if (index > 0) setState(() => index--);
                           },
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: index == 0 ? Colors.grey : Colors.white),
+                            side: BorderSide(
+                                color: index == 0 ? Colors.grey : Colors.white),
                             padding: const EdgeInsets.only(left: 20, right: 30),
                           ),
                           child: Row(
                             children: [
                               Icon(Icons.arrow_back_ios_rounded,
-                                  color: index == 0 ? Colors.grey : Colors.white, size: 28),
+                                  color:
+                                      index == 0 ? Colors.grey : Colors.white,
+                                  size: 28),
                               const SizedBox(width: 12),
                               Text(
                                 'Previous',
                                 style: TextStyle(
-                                    color: index == 0 ? Colors.grey : Colors.white, fontSize: 30),
+                                    color:
+                                        index == 0 ? Colors.grey : Colors.white,
+                                    fontSize: 30),
                               ),
                             ],
                           )),
                       Text(
                         "${index + 1}/${japaneseWords.length}",
                         style: const TextStyle(
-                            color: Colors.white, fontSize: 34, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontSize: 34,
+                            fontWeight: FontWeight.bold),
                       ),
                       OutlinedButton(
                           onPressed: () {
@@ -95,10 +110,15 @@ class _FlippingCardsState extends State<FlippingCards> {
                           ),
                           child: Row(
                             children: [
-                              Text(japaneseWords.length == index + 1 ? "Done    " : 'Next     ',
-                                  style: const TextStyle(color: Colors.white, fontSize: 30)),
+                              Text(
+                                  japaneseWords.length == index + 1
+                                      ? "Done    "
+                                      : 'Next     ',
+                                  style: const TextStyle(
+                                      color: Colors.white, fontSize: 30)),
                               const SizedBox(width: 12),
-                              const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white, size: 28),
+                              const Icon(Icons.arrow_forward_ios_rounded,
+                                  color: Colors.white, size: 28),
                             ],
                           ))
                     ],
