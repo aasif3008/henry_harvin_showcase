@@ -45,7 +45,8 @@ class _HomeState extends State<Home> {
                 style: IconButton.styleFrom(backgroundColor: Colors.black38),
               ),
               const SizedBox(height: 20),
-              const Text('Click on the icon above...', style: TextStyle(fontSize: 30, color: Colors.white))
+              const Text('Click on the icon above...',
+                  style: TextStyle(fontSize: 30, color: Colors.white))
             ],
           ),
         ],
@@ -61,4 +62,32 @@ class _HomeState extends State<Home> {
       // ),
     );
   }
+}
+
+Widget button(icon, text, onTap) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(30),
+    onTap: onTap,
+    child: Container(
+      width: 280,
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 20),
+          Icon(icon, size: 160, color: Colors.white),
+          const SizedBox(height: 20),
+          Text(
+            text,
+            style: const TextStyle(color: Colors.white, fontSize: 34),
+          ),
+          const SizedBox(height: 10),
+        ],
+      ),
+    ),
+  );
 }
